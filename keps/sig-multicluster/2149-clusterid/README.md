@@ -336,7 +336,7 @@ Contains a unique identifier for the containing cluster.
 
 ##### Contents
 
-*   The identifier **must** be a valid RFC-1123 DNS label [as described for object names in the Kubernetes docs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names).
+*   TODO The identifier **must** be a valid RFC-1123 DNS label [as described for object names in the Kubernetes docs](https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names).
     *   Following the most restrictive standard naming constraint ensures maximum usefulness and portability.
     *   Can be used as a component in MCS DNS.
 *   The identifier **may** be a human readable description of its cluster.
@@ -354,6 +354,8 @@ Contains a unique identifier for the containing cluster.
 **Renaming a cluster**: Since a `cluster.clusterset.k8s.io ClusterProperty` must be immutable for the duration of its *membership* in a given ClusterSet, the property contents can be "changed" by unregistering the cluster from the ClusterSet and reregistering it with the new name.
 
 **Reusing cluster names**: Since an `cluster.clusterset.k8s.io ClusterProperty` has no restrictions on whether or not a ClusterProperty can be repeatable, if a cluster unregisters from a ClusterSet it is permitted under this standard to rejoin later with the same `cluster.clusterset.k8s.io ClusterProperty` it had before. Similarly, a *different* cluster could join a ClusterSet with the same `cluster.clusterset.k8s.io ClusterProperty` that had been used by another cluster previously, as long as both do not have membership in the same ClusterSet at the same time. Finally, two or more clusters may have the same `cluster.clusterset.k8s.io ClusterProperty` concurrently (though they **should** not; see "Uniqueness" above) *as long as* they both do not have membership in the same ClusterSet.
+
+**TODO: one or more labels in the cluster.clusterset.k8s.io ClusterProperty**
 
 #### Property: `clusterset.k8s.io`
 

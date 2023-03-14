@@ -757,7 +757,7 @@ allows naming collisions to be avoided for headless services backed by identical
 `StatefulSets` deployed in multiple clusters.
 
 _Note: the total length of a FQDN is limited to 253 characters. Each label is
-independently limited to 63 characters, so users must choose
+independently limited to 63 characters, <TODO: something about clusterid having multiple labels> so users must choose
 host/cluster/service names to avoid hitting this upper bound._
 
 All service consumers must use the `*.svc.clusterset.local` name to enable
@@ -856,6 +856,8 @@ of their sameness, such as `special-east/prod` for all the backends in
 `special-east.prod.svc.clusterset.local` and
 `special-west.prod.svc.clusterset.local` encode the cluster-specific addressing
 required by virtue of being two different `ServiceExport`s.
+
+TODO: motivate that pod specific DNS addressing is a special case as it must disambiguate totally for each backend, a pressure valve to the underyling abstraction of Services but which we must also support. implementers can put whatever gibberish they want in the disambiguating <clusterid> which may be a location, a cloud provider, whatever, and seem contrary to above but which is only for pod dns.
 
 Note that this puts the burden of enforcing the boundaries of a
 `ServiceExport`'s fungibility on the name/namespace creator.
